@@ -212,11 +212,3 @@ Here are some examples of how you can use this Pagination class in different way
     
     // Show the Last Link
     echo $nav->last(' <a href="./page-{nr}/">Einde</a> | ');
-
-___
-
-### Final Notes
-
-Reconnect is always glad to help you if you have any questions relating to this product. 
-
-<a href="#toc">Go To Table of Contents</a>
