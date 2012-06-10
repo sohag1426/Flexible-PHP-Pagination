@@ -4,10 +4,10 @@ The ACL class was designed to do nothing other then do Access Control. The goal 
 - Flexible
 - Easy to use
 - Highly customizable
-- Well documented
+- [Well documented](https://github.com/Blaxus/Flexible-PHP-Pagination/blob/master/Documentation.md "Flexible PHP Pagination Documentation")
 - Support for translations
 - Search Engine Optimization Options
-- Free Technical Support
+- Free Support
 
 ## Changelog ##
 **Update 1.1:**  
