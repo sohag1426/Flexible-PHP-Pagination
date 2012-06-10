@@ -1,6 +1,6 @@
 The ACL class was designed to do nothing other then do Access Control. The goal is that this Access Control List is completely decentralized, and therefor it is no tailored to any particular membership script.
 
-## Features ##
+## Features
 - Flexible
 - Easy to use
 - Highly customizable
@@ -9,17 +9,17 @@ The ACL class was designed to do nothing other then do Access Control. The goal 
 - Search Engine Optimization Options
 - Free Support
 
-## Changelog ##
+## Changelog
 **Update 1.1:**  
 - Added Optional Inactive links to be displayed
 
-## Support ##
+## Support
 
 You can ask me any question about this project in my [Forums], if you have a problem please use the [Issue Tracker]
 
 If you like this product you can always help me by [donating].
 
-## Licencing ##
+## Licencing
 
 This Code is Released under the [MIT license].
 
@@ -33,7 +33,7 @@ This Code is Released under the [MIT license].
 
 [Issue Tracker]: https://github.com/Blaxus/Flexible-PHP-Pagination/issues
 [donating]: http://blaxus.net/donate/
-[Forums]: http://reconnect-inc.com/forums/
-[@blaxus]: http://twitter.com/thomasfuchs
+[Forums]: http://blaxus.net/forums/
+[@blaxus]: http://twitter.com/blaxus
 [David D'hont]: mailto:blaxus@gmail.com
 [MIT license]: http://www.opensource.org/licenses/mit-license.php
