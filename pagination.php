@@ -6,7 +6,8 @@
  */
 class Pagination
 {
-    var $max, $total, $parameter, $start = 0; 
+    var $max, $total, $parameter, $start = 0;
+    var $i = 0;
     
    /**
     * Class Constructor, Accepts 3 parameters. The minimum that any pagination requires.
@@ -171,5 +172,17 @@ class Pagination
         }
 		
 		return $r;
+    }
+	
+    /**
+     * This function allows you to limit the loop without using a limit inside another query. Or if you are using arrays / xml.
+     */
+    function paginator()
+    {
+        $this->i = $this->i+1;
+        if( $this->i > $this->start() && $this->i <= $this->end() )
+        {
+            return true;
+        }
     }
 }
