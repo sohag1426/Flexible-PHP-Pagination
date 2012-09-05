@@ -1,12 +1,13 @@
 <?php
-$topics = Forum::fetchTopics(1); # Returns an XML resultset using simplexml_load_string (works like an array)
-# The above will generate an error as this module is not included in this package, but it shows you how to use the function $nav->paginator();
+# Function can be found at https://gist.github.com/3636901
+$topics = fetchTopics(1); # Returns an XML resultset using simplexml_load_string (works like an array)
 
 $max = 5; # Set the maximum number of results per page
 $total = count($topics); # Count the amount of returned results
+$maxNum = 7;
 
 # We Need to know for pagination, our Maximum per page, and our Total, and an optional Parameter
-$nav = new Pagination($max, $total, 'page');
+$nav = new Pagination($max, $total, $maxNum, 'page');
 $link = 'forum.php?id='.htmlspecialchars($_GET['id']).'&page={nr}';
 ?>
 <table cellspacing="0" width="100%">

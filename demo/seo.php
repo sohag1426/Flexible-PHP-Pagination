@@ -9,8 +9,7 @@ $total = mysql_num_rows($query1);
 
 $nav = new Pagination($max, $total);
 
-$select2 = $select." LIMIT ".$nav->start().",".$max;
-$query2 = mysql_query($select2) or die(mysql_error()); 
+$query2 = mysql_query($select." LIMIT ".$nav->start().",".$max) or die(mysql_error()); 
 while($item = mysql_fetch_object($query2)) 
 { 
     echo $item->id . ' - <b>' . $item->name . '</b><br />';
