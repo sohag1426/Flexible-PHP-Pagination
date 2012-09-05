@@ -47,12 +47,15 @@ Maximum Per Page, Total number of results and optionally a Get Parameter.
 	// Maximum Items Per Page
 	$max = 6;
 	
+	// Maximum Numbers Per Page
+	$maxNum = 7;
+	
 	// Number of Total Results in our Table
 	$numQuery = mysql_query("SELECT * FROM test") or die( mysql_error() ); 
 	$total = mysql_num_rows($numQuery);
 	
-	// We Need to know for pagination, our Maximum per page, and our Total, and an optional Parameter
-	$nav = new Pagination($max, $total, 'page');
+	// We Need to know for pagination, our Maximum per page, our Total per page, our Maximum numbers to show (false to disable), and an optional Parameter
+	$nav = new Pagination($max, $total, $maxNum, 'page');
 	
 	// Here we run the Query and Limit our Results based on the pagination
 	$query = mysql_query("SELECT * FROM test LIMIT ".$nav->start().",".$max) or die( mysql_error() ); 
@@ -81,7 +84,7 @@ That's all there is to it. You may have noticed we allow custom HTML. This gives
 - $obj->next( active, inactive )
 - $obj->last( active, inactive )
 - $obj->info( html )
-- $obj->numbers( link, current, reversed = 0 )
+- $obj->numbers( link, current, reversed = false )
 
 Active refers to custom HTML for the Active Link. Inactive is optional HTML and when ignored the link simply will not display. However, if you want to show an Inactive link. You can use the HTML there to display an  Inactive Link. 
 
@@ -98,7 +101,7 @@ Parameter 2:
 > Required - a number WITHOUT A LINK. This is used for the current page you are on
 
 Parameter 3:
-> Optional - this accepts only 0 and 1. When set to 1 it will reverse *only the order of the numbers* backwards.
+> Optional - this accepts only TRUE and FALSE. When set to TRUE it will reverse *only the order of the numbers* backwards.
 
 Next up are tags. Because we wanted to make it easy to use we added easy to use tags. Much like template engines use them. There are only the tags we created and they are **Case Sensetive**.
 
@@ -194,7 +197,7 @@ Here are some examples of how you can use this Pagination class in different way
 
 **Reversed Numbers:**
 
-	echo $nav->numbers(' <a href="index.php?p={nr}">{nr}</a> | ', ' <b> {nr} </b>', 1);
+	echo $nav->numbers(' <a href="index.php?p={nr}">{nr}</a> | ', ' <b> {nr} </b>', true);
 
 **Translated Text:**
 

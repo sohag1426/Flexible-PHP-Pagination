@@ -1,4 +1,4 @@
-The ACL class was designed to do nothing other then do Access Control. The goal is that this Access Control List is completely decentralized, and therefor it is no tailored to any particular membership script.
+The Flexible PHP pagination class was designed to be the easiest to use PHP Pagination system without losing any customization options.
 
 ## Features
 - Flexible
@@ -10,14 +10,26 @@ The ACL class was designed to do nothing other then do Access Control. The goal 
 - Free Support
 
 ## Changelog
-**Update 1.1:**  
+**Update 1.1.02:**  
+- Added get_html method for a convenient no-fuss html output.
+- Added optional parameter to numbers method to show only a limited set of adjacent page numbers.
+- Added customizable parameter to pagination constructor for modifying the maximum amount of numbers.
+- Fixed some documentation & cleaned up Readme.
+
+**Update 1.1.01:**  
 - Added Optional Inactive links to be displayed
 
 ## Support
 
-You can ask me any question about this project in my [Forums], if you have a problem please use the [Issue Tracker]
+You can ask me any question or request a feauture, you are also free to help on this project, if you have a problems please use the [Issue Tracker]
+If you like this class a small donation is always appreciated.
 
-If you like this product you can always help me by [donating].
+<form action="https://www.paypal.com/cgi-bin/webscr" method="post">
+<input type="hidden" name="cmd" value="_s-xclick">
+<input type="hidden" name="hosted_button_id" value="WDVNE9JFPSQUQ">
+<input type="image" src="https://www.paypalobjects.com/en_US/BE/i/btn/btn_donateCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+</form>
 
 ## Licencing
 
@@ -32,8 +44,6 @@ This Code is Released under the [MIT license].
 > THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 [Issue Tracker]: https://github.com/Blaxus/Flexible-PHP-Pagination/issues
-[donating]: http://blaxus.net/donate/
-[Forums]: http://blaxus.net/forums/
 [@blaxus]: http://twitter.com/blaxus
 [David D'hont]: mailto:blaxus@gmail.com
 [MIT license]: http://www.opensource.org/licenses/mit-license.php

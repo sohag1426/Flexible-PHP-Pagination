@@ -1,8 +1,6 @@
 <?
 /**
- * example of using @return with a class name
- * @param integer even or odd integer
- * @return Parser|false phpDocumentor Parser object or error
+ * The Flexible PHP pagination class was designed to be the easiest to use PHP Pagination system without losing any customization options.
  */
 class Pagination
 {
@@ -13,12 +11,14 @@ class Pagination
 	* Class Constructor, Accepts 3 parameters. The minimum that any pagination requires.
 	* @param int $max maximum amount of results per page
 	* @param int $total total number of results in data source
+	* @param int $max_items If set to 7 then a maximum of 7 page numbers are shown. The previous 3 pages, the current page and the next 3 pages shown. (Set to false for all page numbers)
 	* @param int $parameter Default $_GET[param], where parameter will be replaced
 	*/
-	function __construct($max, $total, $parameter = 'p') { 
+	function __construct($max, $total, $max_items = 10, $parameter = 'p') { 
 		$this->max	  = $max; 
 		$this->total	= $total;
 		$this->parameter = $parameter;
+		$this->max_items = $max_items;
 		
 		$this->get = !empty( $_GET[$this->parameter] ) ? $_GET[$this->parameter] : 1;
 	}
@@ -26,15 +26,16 @@ class Pagination
 	/**
 	 * A pre-formatted string of html to display general pagination links. Use this if you don't care too much about
 	 * The html includes links to first, last, next, previous and numbered pages.
-	 * @return string html
+	 * @param int $url the url to be used in the links
+	 * @return string HTML
 	 */
 	function get_html($url) {
 		$links = '<div class="pagination">';
-		$links .= $this->first('<a href="'.$url.'" alt="First">First</a> ');
-		$links .= $this->previous('<a href="'.$url.'" alt="Previous">Previous</a> ');
+		$links .= $this->first('<a href="'.$url.'" alt="First">First</a> ', 'First ');
+		$links .= $this->previous('<a href="'.$url.'" alt="Previous">Previous</a> ', 'Previous ');
 		$links .= $this->numbers('<a href="'.$url.'">{nr}</a> ',  '<strong>{nr}</strong> ');
-		$links .= $this->next('<a href="'.$url.'" alt="Next">Next</a> ');
-		$links .= $this->last('<a href="'.$url.'">Last</a>');
+		$links .= $this->next('<a href="'.$url.'" alt="Next">Next</a> ', 'Next ');
+		$links .= $this->last('<a href="'.$url.'">Last</a>', 'Last ');
 		$links .= '</div>';
 		return $links;
 	}
@@ -44,13 +45,13 @@ class Pagination
 	* @return int Final Calculation of where our result set should begin
 	*/
 	function start() {
-		// Computers Calculate From 0 thus, page1 must start results from 0
+		# Computers Calculate From 0 thus, page1 must start results from 0
 		$start = $this->get-1;
 		
-		// Calculate Our Starting Point (0x6=0(start from 0, page1), 1x6=6(start from 6, page2), etc)
+		# Calculate Our Starting Point (0x6=0(start from 0, page1), 1x6=6(start from 6, page2), etc)
 		$calc = $start*$this->max;
 		
-		// return our final outcome
+		# return our final outcome
 		return $calc;
 	}
 	
@@ -59,14 +60,14 @@ class Pagination
 	* @return int Final Calculation of where our result set should end
 	*/
 	function end() {
-		// Calculate the Beginning + The maximum amount of results
+		# Calculate the Beginning + The maximum amount of results
 		$calc = $this->start() + $this->max;
 		
-		// Only return this if it is not above the total otherwise return our maximum
-		// example, 24 + 6 = 30, but with only 26 reselts it will display the total results istead (26)
+		# Only return this if it is not above the total otherwise return our maximum
+		# example, 24 + 6 = 30, but with only 26 reselts it will display the total results istead (26)
 		$r = ($calc > $this->total) ? $this->total : $calc;
 		
-		// return the result
+		# return the result
 		return $r;
 	}
 	
@@ -96,7 +97,7 @@ class Pagination
 	* @return string The Same HTML replaced the tags with the proper number
 	*/
 	function first($html, $html2='') {
-		// Only show if you are not on page 1, otherwise show HTML2
+		# Only show if you are not on page 1, otherwise show HTML2
 		$r = ($this->get != 1) ? str_replace('{nr}', 1, $html) : str_replace('{nr}', 1, $html2);
 		
 		return $r;
@@ -108,7 +109,7 @@ class Pagination
 	* @return string The Same HTML replaced the tags with the proper number
 	*/
 	function previous($html, $html2='') {
-		// Only show if you are not on page 1, otherwise show HTML2
+		# Only show if you are not on page 1, otherwise show HTML2
 		$r = ($this->get != 1) ? str_replace('{nr}', $this->get-1, $html) : str_replace('{nr}', $this->get-1, $html2);
 		
 		return $r;
@@ -120,7 +121,7 @@ class Pagination
 	* @return string The Same HTML replaced the tags with the proper number
 	*/
 	function next($html, $html2='') {
-		// Only show if you are not on the last page
+		# Only show if you are not on the last page
 		$r = ($this->get < $this->pages()) ? str_replace('{nr}', $this->get+1, $html) : str_replace('{nr}', $this->get+1, $html2);
 		
 		return $r;
@@ -132,7 +133,7 @@ class Pagination
 	* @return string The Same HTML replaced the tags with the proper number
 	*/
 	function last($html, $html2='') {
-		// Only show if you are not on the last page
+		# Only show if you are not on the last page
 		$r = ($this->get < $this->pages()) ? str_replace('{nr}', $this->pages(), $html) : str_replace('{nr}', $this->pages(), $html2);
 		
 		return $r;
@@ -143,14 +144,12 @@ class Pagination
 	* @param string $link The HTML to display a number with a link
 	* @param string $current The HTML to display a the current page number without a link
 	* @param string $reversed Optional Parameter, set to true if you want the numbers reversed (align to right for designs)
-	* @param int $max_items If set to 7 then a maximum of 7 page numbers are shown. The previous 3 pages, the current page and the next 3 pages shown.
-	*	Set to false or 0 for all page numbers.
 	* @return string The Same HTML replaced the tags with the proper numbers and links
 	*/
-	function numbers($link, $current, $max_items = 10, $reversed=false) {
+	function numbers($link, $current, $reversed=false) {
 		$r = '';
-		$range = floor(($max_items-1)/2);
-		if (!$max_items) {
+		$range = floor(($this->max_items-1)/2);
+		if (!$this->max_items) {
 			$page_nums = range(1, $this->pages());
 		} else {
 			$lower_limit = max($this->get - $range, 1);
