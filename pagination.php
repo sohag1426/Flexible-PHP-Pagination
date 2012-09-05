@@ -9,7 +9,7 @@ class Pagination
 	var $max, $total, $parameter, $start = 0;
 	var $i = 0;
 	
-   /**
+	/**
 	* Class Constructor, Accepts 3 parameters. The minimum that any pagination requires.
 	* @param int $max maximum amount of results per page
 	* @param int $total total number of results in data source
@@ -39,7 +39,7 @@ class Pagination
 		return $links;
 	}
 	
-   /**
+	/**
 	* This calculates the start of our result set, based on our current page
 	* @return int Final Calculation of where our result set should begin
 	*/
@@ -54,7 +54,7 @@ class Pagination
 		return $calc;
 	}
 	
-   /**
+	/**
 	* This calculates the end of our result set, based on our current page
 	* @return int Final Calculation of where our result set should end
 	*/
@@ -70,7 +70,7 @@ class Pagination
 		return $r;
 	}
 	
-   /**
+	/**
 	* This calculates the total pages in our result set
 	* @return int return Rounds Up the total results / maximum per page
 	*/
@@ -78,7 +78,7 @@ class Pagination
 		return ceil($this->total/$this->max);
 	}
 	
-   /**
+	/**
 	* Based on which page you are this returns informations like, start result, end result, total results, current page, total pages
 	* @param string $html The HTML you wish to use to display the link
 	* @return mixed return information we may need to display
@@ -90,7 +90,7 @@ class Pagination
 		return str_replace($tags, $code, $html);
 	}
 	
-   /**
+	/**
 	* This shows the 'first' link with custom html
 	* @param string $html The HTML you wish to use to display the link
 	* @return string The Same HTML replaced the tags with the proper number
@@ -102,7 +102,7 @@ class Pagination
 		return $r;
 	}
 	
-   /**
+	/**
 	* This shows the 'previous' link with custom html
 	* @param string $html The HTML you wish to use to display the link
 	* @return string The Same HTML replaced the tags with the proper number
@@ -114,7 +114,7 @@ class Pagination
 		return $r;
 	}
 	
-   /**
+	/**
 	* This shows the 'next' link with custom html
 	* @param string $html The HTML you wish to use to display the link
 	* @return string The Same HTML replaced the tags with the proper number
@@ -126,7 +126,7 @@ class Pagination
 		return $r;
 	}
 	
-   /**
+	/**
 	* This shows the 'last' link with custom html
 	* @param string $html The HTML you wish to use to display the link
 	* @return string The Same HTML replaced the tags with the proper number
@@ -138,13 +138,13 @@ class Pagination
 		return $r;
 	}
 	
-   /**
+	/**
 	* This shows an loop of 'numbers' with their appropriate link in custom html
 	* @param string $link The HTML to display a number with a link
 	* @param string $current The HTML to display a the current page number without a link
 	* @param string $reversed Optional Parameter, set to true if you want the numbers reversed (align to right for designs)
 	* @param int $max_items If set to 7 then a maximum of 7 page numbers are shown. The previous 3 pages, the current page and the next 3 pages shown.
-	*   Set to false or 0 for all page numbers.
+	*	Set to false or 0 for all page numbers.
 	* @return string The Same HTML replaced the tags with the proper numbers and links
 	*/
 	function numbers($link, $current, $max_items = 10, $reversed=false) {
