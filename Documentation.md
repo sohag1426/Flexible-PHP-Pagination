@@ -23,7 +23,9 @@ Because of this class's Flexibility, it may be harder to understand how to use i
 	
 ### Composer Users
 
-Composer users can use this package by using Composer's default autoloading feature. Just use the namespace 'Modular'. and then call the class like defined in this guide.
+Composer users can use this package by using Composer's default autoloading feature. Just use the namespace **Modularr**.
+
+Then call the class like defined in this guide.
 I am new to composer, so please if you see anything you can improve. Feel free to pitch in.
 
 ___
