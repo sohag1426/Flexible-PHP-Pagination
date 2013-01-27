@@ -10,13 +10,18 @@ The Flexible PHP pagination class was designed to be the easiest to use PHP Pagi
 - Free Support
 
 ## Changelog
-**Update 1.1.02:**  
+**Update 1.1.3:**
+- Added composer files
+- Updated documentation a bit for Composer users
+
+## Changelog
+**Update 1.1.2:**
 - Added get_html method for a convenient no-fuss html output.
 - Added optional parameter to numbers method to show only a limited set of adjacent page numbers.
 - Added customizable parameter to pagination constructor for modifying the maximum amount of numbers.
 - Fixed some documentation & cleaned up Readme.
 
-**Update 1.1.01:**  
+**Update 1.1.1:**
 - Added Optional Inactive links to be displayed
 
 ## Support

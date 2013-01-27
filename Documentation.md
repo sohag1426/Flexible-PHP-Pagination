@@ -19,7 +19,12 @@ This is a basic PHP Class. So to use this, all you have to do is the following:
 
 Because of this class's Flexibility, it may be harder to understand how to use it, but we assume Basic Knowledge of PHP is present. A file include would go as followed:
 
-	include('classes/pagination.php');
+	include('flexible-php-pagination.php');
+	
+### Composer Users
+
+Composer users can use this package by using Composer's default autoloading feature. Just use the namespace 'Modular'. and then call the class like defined in this guide.
+I am new to composer, so please if you see anything you can improve. Feel free to pitch in.
 
 ___
 
