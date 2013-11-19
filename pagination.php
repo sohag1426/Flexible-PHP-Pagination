@@ -21,7 +21,7 @@ class Pagination
 		$this->max_items = $max_items;
 		
 		# check if the get parameter value is not empty or not higher than the total number of pages.
-		$this->get = (!empty( $_GET[$this->parameter] || $_GET[$this->parameter] < $this->pages()) ? $_GET[$this->parameter] : 1;
+		$this->get = (!empty( $_GET[$this->parameter] )  && ( $_GET[$this->parameter] <= $this->pages()))? $_GET[$this->parameter] : 1;
 	}
 	
 	/**
