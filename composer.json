@@ -7,7 +7,8 @@
     "license": "UNLICENSE",
     "authors": [
         {
-            "name": "Blaxus"
+            "name": "Blaxus",
+            "email": "admin@daviddhont.com"
         }
     ]
 }
