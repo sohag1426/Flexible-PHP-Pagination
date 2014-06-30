@@ -5,10 +5,15 @@
     "keywords": ["php","pagination"],
     "homepage": "http://modularr.com",
     "license": "UNLICENSE",
+    "autoload": {
+        "psr-0": {
+            "modularr": "src/"
+        }
+    },
     "authors": [
         {
             "name": "Blaxus",
             "email": "admin@daviddhont.com"
         }
-    ]
+    ],
 }
