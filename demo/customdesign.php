@@ -61,7 +61,7 @@ padding-top:7px;
 Note: This CSS design is freely available here:<a href="http://www.thewebhelp.com/css/pagination-style-template/">Pagination Style Template</a><br />
 And does not belong to me. All credit for the design goes to this author.<br />
 <br />
-<?
+<?php
 include('config.php');
 
 $max = 6;
