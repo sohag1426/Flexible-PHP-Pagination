@@ -22,7 +22,7 @@ $link = 'forum.php?id='.htmlspecialchars($_GET['id']).'&page={nr}';
 <tfoot>
     <tr>
     <td colspan="5">
-        <span>Showing <?=$nav->info('{start} - {end} of {total}')?> threads</span>
+        <span>Showing <?php echo $nav->info('{start} - {end} of {total}'); ?> threads</span>
         <?php
         echo $nav->first(' <a href="'.$link.'">First</a> ', ' <strong>First</strong> ');
         echo $nav->previous(' <a href="'.$link.'">&laquo;</a> ', ' <strong>&laquo;</strong> ');

@@ -1,5 +1,5 @@
 <base href="http://demo.reconnect-inc.com/pagination/seo/">
-<?
+<?php
 include('config.php');
 
 $max = 6;
