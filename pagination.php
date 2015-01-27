@@ -4,7 +4,7 @@
  */
 class Pagination
 {
-	var $max, $total, $parameter, $start = 0;
+	var $max, $total, $value, $start = 0;
 	var $i = 0;
 	
 	/**
@@ -12,16 +12,15 @@ class Pagination
 	* @param int $max maximum amount of results per page
 	* @param int $total total number of results in data source
 	* @param int $max_items If set to 7 then a maximum of 7 page numbers are shown. The previous 3 pages, the current page and the next 3 pages shown. (Set to false for all page numbers)
-	* @param int $parameter Default $_GET[param], where parameter will be replaced
+	* @param int $value The value used to determine what page we're currently on
 	*/
-	function __construct($max, $total, $max_items = 10, $parameter = 'p') { 
-		$this->max	  = $max; 
-		$this->total	= $total;
-		$this->parameter = $parameter;
-		$this->max_items = $max_items;
-		
-		# check if the get parameter value is not empty or not higher than the total number of pages.
-		$this->get = (!empty( $_GET[$this->parameter] )  && ( $_GET[$this->parameter] <= $this->pages()))? $_GET[$this->parameter] : 1;
+	function __construct($max, $total, $max_items = 10, $value = 1) { 
+		$this->max	  		= $max; 
+		$this->total		= $total;
+		$this->max_items 	= $max_items;
+
+		# Set the page as a number, bypassing GET
+		$this->value = (!empty($value) && ($value <= $this->pages()) && is_numeric($value)) ? $value : 1;
 	}
 	
 	/**
@@ -47,7 +46,7 @@ class Pagination
 	*/
 	function start() {
 		# Computers Calculate From 0 thus, page1 must start results from 0
-		$start = $this->get-1;
+		$start = $this->value - 1;
 		
 		# Calculate Our Starting Point (0x6=0(start from 0, page1), 1x6=6(start from 6, page2), etc)
 		$calc = $start*$this->max;
@@ -87,7 +86,7 @@ class Pagination
 	*/
 	function info($html) {
 		$tags = array('{total}', '{start}', '{end}', '{page}', '{pages}');
-		$code = array($this->total, $this->start()+1, $this->end(), $this->get, $this->pages());
+		$code = array($this->total, $this->start()+1, $this->end(), $this->value, $this->pages());
 		
 		return str_replace($tags, $code, $html);
 	}
@@ -99,7 +98,7 @@ class Pagination
 	*/
 	function first($html, $html2='') {
 		# Only show if you are not on page 1, otherwise show HTML2
-		$r = ($this->get != 1) ? str_replace('{nr}', 1, $html) : str_replace('{nr}', 1, $html2);
+		$r = ($this->value != 1) ? str_replace('{nr}', 1, $html) : str_replace('{nr}', 1, $html2);
 		
 		return $r;
 	}
@@ -111,7 +110,7 @@ class Pagination
 	*/
 	function previous($html, $html2='') {
 		# Only show if you are not on page 1, otherwise show HTML2
-		$r = ($this->get != 1) ? str_replace('{nr}', $this->get-1, $html) : str_replace('{nr}', $this->get-1, $html2);
+		$r = ($this->value != 1) ? str_replace('{nr}', $this->value-1, $html) : str_replace('{nr}', $this->value-1, $html2);
 		
 		return $r;
 	}
@@ -123,7 +122,7 @@ class Pagination
 	*/
 	function next($html, $html2='') {
 		# Only show if you are not on the last page
-		$r = ($this->get < $this->pages()) ? str_replace('{nr}', $this->get+1, $html) : str_replace('{nr}', $this->get+1, $html2);
+		$r = ($this->value < $this->pages()) ? str_replace('{nr}', $this->value+1, $html) : str_replace('{nr}', $this->value+1, $html2);
 		
 		return $r;
 	}
@@ -135,7 +134,7 @@ class Pagination
 	*/
 	function last($html, $html2='') {
 		# Only show if you are not on the last page
-		$r = ($this->get < $this->pages()) ? str_replace('{nr}', $this->pages(), $html) : str_replace('{nr}', $this->pages(), $html2);
+		$r = ($this->value < $this->pages()) ? str_replace('{nr}', $this->pages(), $html) : str_replace('{nr}', $this->pages(), $html2);
 		
 		return $r;
 	}
@@ -153,8 +152,8 @@ class Pagination
 		if (!$this->max_items) {
 			$page_nums = range(1, $this->pages());
 		} else {
-			$lower_limit = max($this->get - $range, 1);
-			$upper_limit = min($this->pages(), $this->get + $range);
+			$lower_limit = max($this->value - $range, 1);
+			$upper_limit = min($this->pages(), $this->value + $range);
 			$page_nums = range($lower_limit, $upper_limit);
 		}
 
@@ -163,7 +162,7 @@ class Pagination
 		}
 
 		foreach ($page_nums as $i) {
-			if($this->get == $i) {
+			if($this->value == $i) {
 				$r .= str_replace('{nr}', $i, $current);
 			}
 			else {
