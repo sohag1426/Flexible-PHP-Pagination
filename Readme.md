@@ -14,6 +14,7 @@ The Flexible PHP pagination class was designed to be the easiest to use PHP Pagi
 - Changed to [Semantic Versioning](http://semver.org/)
 - $parameter converted to $value in the constructor (and all references), this is a compatibility fix
 - Moved Repository to Community Account.
+- Removed Documentation File in Favor of using the [Wiki](https://github.com/Modularr/Flexible-PHP-Pagination/wiki/Documentation) (a remnant of CodeCanyon's required format)
 
 **Update 1.3.0:**
 - Added composer files
