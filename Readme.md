@@ -1,6 +1,9 @@
+# Flexible PHP Pagination
+[![Latest Stable Version](https://poser.pugx.org/modularr/flexible-php-pagination/v/stable.svg)](https://packagist.org/packages/modularr/flexible-php-pagination) [![Total Downloads](https://poser.pugx.org/modularr/flexible-php-pagination/downloads.svg)](https://packagist.org/packages/modularr/flexible-php-pagination) [![Latest Unstable Version](https://poser.pugx.org/modularr/flexible-php-pagination/v/unstable.svg)](https://packagist.org/packages/modularr/flexible-php-pagination) [![License](https://poser.pugx.org/modularr/flexible-php-pagination/license.svg)](https://packagist.org/packages/modularr/flexible-php-pagination)
+
 The Flexible PHP pagination class was designed to be the easiest to use PHP Pagination system without losing any customization options.
 
-# Get Started:
+## Get Started:
 - [Documentation](https://github.com/Modularr/Flexible-PHP-Pagination/wiki/Documentation "Flexible PHP Pagination Documentation")
 - [Demo](https://github.com/Modularr/Flexible-PHP-Pagination/blob/master/demo/alloptions.php)
 - [Changelog](https://github.com/Modularr/Flexible-PHP-Pagination/wiki/Changelog "Flexible PHP Pagination Changelog")
