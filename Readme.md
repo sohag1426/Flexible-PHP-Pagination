@@ -4,7 +4,7 @@ The Flexible PHP pagination class was designed to be the easiest to use PHP Pagi
 - Flexible
 - Easy to use
 - Highly customizable
-- [Well documented](https://github.com/Blaxus/Flexible-PHP-Pagination/blob/master/Documentation.md "Flexible PHP Pagination Documentation")
+- [Well documented](https://github.com/Modularr/Flexible-PHP-Pagination/wiki/Documentation "Flexible PHP Pagination Documentation")
 - Support for translations
 - Search Engine Optimization Options
 - Free Support
