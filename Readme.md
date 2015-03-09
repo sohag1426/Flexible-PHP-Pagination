@@ -13,9 +13,9 @@ The Flexible PHP pagination class was designed to be the easiest to use PHP Pagi
 - Easy to use
 - Highly customizable
 - [Well documented](https://github.com/Modularr/Flexible-PHP-Pagination/wiki/Documentation "Flexible PHP Pagination Documentation")
-- Support for translations
-- Search Engine Optimization Options
-- Free Support
+- [Themeable](https://github.com/Modularr/Flexible-PHP-Pagination/wiki/Documentation#themes)
+- [Languages](https://github.com/Modularr/Flexible-PHP-Pagination/wiki/Documentation#translated-text)
+- [SEO](https://github.com/Modularr/Flexible-PHP-Pagination/wiki/Documentation#search-engine-optimized-links)
 
 ## Todo
 
