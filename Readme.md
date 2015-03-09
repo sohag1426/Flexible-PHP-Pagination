@@ -17,6 +17,10 @@ The Flexible PHP pagination class was designed to be the easiest to use PHP Pagi
 - Search Engine Optimization Options
 - Free Support
 
+## Todo
+
+- Themes Support
+
 ## Support
 
 You can ask me any question or request a feauture, you are also free to help on this project, if you have a problems please use the [Issue Tracker]
