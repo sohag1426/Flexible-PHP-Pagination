@@ -1,13 +1,12 @@
 <?php
+error_reporting(E_WARNING);
 
-error_reporting(0);
+# Connect To Database
+mysql_connect('localhost', 'root', 'trunks')or die(mysql_error());
+mysql_select_db('test')or die(mysql_error());
 
-// Connect To Database
-mysql_connect('localhost', 'user', 'password');
-mysql_select_db('database');
+# Include Pagination Class
+include('../pagination.php');
 
-// Include Pagination Class
-include('pagination.php');
-
-// Display Links for Demo Purposes (not required)
+# Display Links for Demo Purposes (not required)
 include('links.html');

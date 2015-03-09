@@ -4,23 +4,25 @@
  */
 class Pagination
 {
-	var $max, $total, $value, $start = 0;
-	var $i = 0;
+	public $max, $total, $value, $start = 0;
+	public $url, $theme = '../themes/default';
+	public $i = 0;
 	
 	/**
 	* Class Constructor, Accepts 3 parameters. The minimum that any pagination requires.
 	* @param int $max maximum amount of results per page
 	* @param int $total total number of results in data source
+	* @param int $page The value used to determine what page we're currently on
 	* @param int $max_items If set to 7 then a maximum of 7 page numbers are shown. The previous 3 pages, the current page and the next 3 pages shown. (Set to false for all page numbers)
-	* @param int $value The value used to determine what page we're currently on
 	*/
-	function __construct($max, $total, $max_items = 10, $value = 1) { 
-		$this->max	  		= $max; 
+	public function __construct($max, $total, $page = 1, $max_items = 10)
+	{ 
+		$this->max	  		= $max;
 		$this->total		= $total;
 		$this->max_items 	= $max_items;
 
 		# Set the page as a number, bypassing GET
-		$this->value = (!empty($value) && ($value <= $this->pages()) && is_numeric($value)) ? $value : 1;
+		$this->page = (!empty($page) && ($page <= $this->pages()) && is_numeric($page)) ? $page : 1;
 	}
 	
 	/**
@@ -29,14 +31,21 @@ class Pagination
 	 * @param int $url the url to be used in the links
 	 * @return string HTML
 	 */
-	function get_html($url) {
-		$links = '<div class="pagination">';
-		$links .= $this->first('<a href="'.$url.'" alt="First">First</a> ', 'First ');
-		$links .= $this->previous('<a href="'.$url.'" alt="Previous">Previous</a> ', 'Previous ');
-		$links .= $this->numbers('<a href="'.$url.'">{nr}</a> ',  '<strong>{nr}</strong> ');
-		$links .= $this->next('<a href="'.$url.'" alt="Next">Next</a> ', 'Next ');
-		$links .= $this->last('<a href="'.$url.'">Last</a>', 'Last ');
-		$links .= '</div>';
+	public function get_html($theme_file=null)
+	{
+		if($theme_file != null)
+		{
+			$this->theme = $theme_file;
+		}
+		$theme = include $this->theme.'.php';
+		
+		$links = $theme['pre'];
+		$links .= $this->first($theme['first'][0], $theme['first'][1]);
+		$links .= $this->previous($theme['previous'][0], $theme['previous'][1]);
+		$links .= $this->numbers($theme['numbers'][0], $theme['numbers'][1]);
+		$links .= $this->next($theme['next'][0], $theme['next'][1]);
+		$links .= $this->last($theme['last'][0], $theme['last'][1]);
+		$links .= $theme['post'];
 		return $links;
 	}
 	
@@ -44,9 +53,10 @@ class Pagination
 	* This calculates the start of our result set, based on our current page
 	* @return int Final Calculation of where our result set should begin
 	*/
-	function start() {
+	public function start()
+	{
 		# Computers Calculate From 0 thus, page1 must start results from 0
-		$start = $this->value - 1;
+		$start = $this->page - 1;
 		
 		# Calculate Our Starting Point (0x6=0(start from 0, page1), 1x6=6(start from 6, page2), etc)
 		$calc = $start*$this->max;
@@ -59,7 +69,8 @@ class Pagination
 	* This calculates the end of our result set, based on our current page
 	* @return int Final Calculation of where our result set should end
 	*/
-	function end() {
+	public function end()
+	{
 		# Calculate the Beginning + The maximum amount of results
 		$calc = $this->start() + $this->max;
 		
@@ -75,7 +86,8 @@ class Pagination
 	* This calculates the total pages in our result set
 	* @return int return Rounds Up the total results / maximum per page
 	*/
-	function pages() {
+	public function pages()
+	{
 		return ceil($this->total/$this->max);
 	}
 	
@@ -84,9 +96,10 @@ class Pagination
 	* @param string $html The HTML you wish to use to display the link
 	* @return mixed return information we may need to display
 	*/
-	function info($html) {
+	public function info($html)
+	{
 		$tags = array('{total}', '{start}', '{end}', '{page}', '{pages}');
-		$code = array($this->total, $this->start()+1, $this->end(), $this->value, $this->pages());
+		$code = array($this->total, $this->start()+1, $this->end(), $this->page, $this->pages());
 		
 		return str_replace($tags, $code, $html);
 	}
@@ -96,23 +109,24 @@ class Pagination
 	* @param string $html The HTML you wish to use to display the link
 	* @return string The Same HTML replaced the tags with the proper number
 	*/
-	function first($html, $html2='') {
+	public function first($html, $html2='')
+	{
 		# Only show if you are not on page 1, otherwise show HTML2
-		$r = ($this->value != 1) ? str_replace('{nr}', 1, $html) : str_replace('{nr}', 1, $html2);
-		
-		return $r;
+		$value = ($this->page != 1) ? $html : $html2;
+		return str_replace(array('{nr}','{url}'), array(1,$this->url), $value);
 	}
 	
+
 	/**
 	* This shows the 'previous' link with custom html
 	* @param string $html The HTML you wish to use to display the link
 	* @return string The Same HTML replaced the tags with the proper number
 	*/
-	function previous($html, $html2='') {
+	public function previous($html, $html2='')
+	{
 		# Only show if you are not on page 1, otherwise show HTML2
-		$r = ($this->value != 1) ? str_replace('{nr}', $this->value-1, $html) : str_replace('{nr}', $this->value-1, $html2);
-		
-		return $r;
+		$value = ($this->page != 1) ? $html : $html2;
+		return str_replace(array('{nr}','{url}'), array($this->page-1,$this->url), $value);
 	}
 	
 	/**
@@ -120,11 +134,11 @@ class Pagination
 	* @param string $html The HTML you wish to use to display the link
 	* @return string The Same HTML replaced the tags with the proper number
 	*/
-	function next($html, $html2='') {
+	public function next($html, $html2='')
+	{
 		# Only show if you are not on the last page
-		$r = ($this->value < $this->pages()) ? str_replace('{nr}', $this->value+1, $html) : str_replace('{nr}', $this->value+1, $html2);
-		
-		return $r;
+		$value = ($this->page < $this->pages()) ? $html : $html2;
+		return str_replace(array('{nr}','{url}'), array($this->page+1,$this->url), $value);
 	}
 	
 	/**
@@ -132,11 +146,11 @@ class Pagination
 	* @param string $html The HTML you wish to use to display the link
 	* @return string The Same HTML replaced the tags with the proper number
 	*/
-	function last($html, $html2='') {
+	public function last($html, $html2='')
+	{
 		# Only show if you are not on the last page
-		$r = ($this->value < $this->pages()) ? str_replace('{nr}', $this->pages(), $html) : str_replace('{nr}', $this->pages(), $html2);
-		
-		return $r;
+		$value = ($this->page < $this->pages()) ? $html : $html2;
+		return str_replace(array('{nr}','{url}'), array($this->pages(),$this->url), $value);
 	}
 	
 	/**
@@ -146,27 +160,38 @@ class Pagination
 	* @param string $reversed Optional Parameter, set to true if you want the numbers reversed (align to right for designs)
 	* @return string The Same HTML replaced the tags with the proper numbers and links
 	*/
-	function numbers($link, $current, $reversed=false) {
+	public function numbers($link, $current, $reversed=false)
+	{
 		$r = '';
 		$range = floor(($this->max_items-1)/2);
-		if (!$this->max_items) {
+		if (!$this->max_items)
+		{
 			$page_nums = range(1, $this->pages());
-		} else {
-			$lower_limit = max($this->value - $range, 1);
-			$upper_limit = min($this->pages(), $this->value + $range);
+		}
+		else
+		{
+			$lower_limit = max($this->page - $range, 1);
+			$upper_limit = min($this->pages(), $this->page + $range);
 			$page_nums = range($lower_limit, $upper_limit);
 		}
 
-		if($reversed) {
+		if($reversed)
+		{
 			$page_nums = array_reverse($page_nums);
 		}
 
-		foreach ($page_nums as $i) {
-			if($this->value == $i) {
-				$r .= str_replace('{nr}', $i, $current);
+		foreach ($page_nums as $i)
+		{
+			$tags = array('{nr}','{url}');
+			$code = array($i,$this->url);
+			
+			if($this->page == $i)
+			{
+				$r .= str_replace($tags, $code, $current);
 			}
-			else {
-				$r .= str_replace('{nr}', $i, $link);
+			else
+			{
+				$r .= str_replace($tags, $code, $link);
 			}
 		}
 		return $r;
@@ -175,9 +200,11 @@ class Pagination
 	/**
 	 * This function allows you to limit the loop without using a limit inside another query. Or if you are using arrays / xml.
 	 */
-	function paginator() {
+	public function paginator()
+	{
 		$this->i = $this->i+1;
-		if( $this->i > $this->start() && $this->i <= $this->end() ) {
+		if( $this->i > $this->start() && $this->i <= $this->end() )
+		{
 			return true;
 		}
 	}

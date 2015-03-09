@@ -19,9 +19,7 @@ The Flexible PHP pagination class was designed to be the easiest to use PHP Pagi
 
 ## Todo
 
-- Theme Support
-- Fix Docs & Demos
-- PSR 0 & PSR 4 support?
+- Themes Support
 
 ## Support
 
