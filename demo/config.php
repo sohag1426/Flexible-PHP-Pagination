@@ -3,8 +3,8 @@
 error_reporting(0);
 
 // Connect To Database
-mysql_connect('localhost', 'admin_user', 'Trunks15');
-mysql_select_db('admin_demo');
+mysql_connect('localhost', 'user', 'password');
+mysql_select_db('database');
 
 // Include Pagination Class
 include('pagination.php');
