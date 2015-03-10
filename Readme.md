@@ -25,13 +25,12 @@ The Flexible PHP pagination class was designed to be the easiest to use PHP Pagi
 
 ## Support
 
-You can ask me any question or request a feauture, you are also free to help on this project, if you have a problems please use the [Issue Tracker]
+You can ask me any question or request a feauture, you are also free to help on this project, if you have a problems please use the [Issue Tracker](https://github.com/Modularr/Flexible-PHP-Pagination/issues)
 
 ## Licencing
 
 This Code is Released under the [UNLICENCE]. You can read the full licence on the website or with the included licence file.
 
-[Issue Tracker]: https://github.com/Blaxus/Flexible-PHP-Pagination/issues
 [@blaxus]: http://twitter.com/blaxus
 [UNLICENCE]: http://unlicense.org/
 [MIT license]: http://www.opensource.org/licenses/mit-license.php
