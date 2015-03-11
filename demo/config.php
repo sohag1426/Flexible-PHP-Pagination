@@ -2,7 +2,7 @@
 error_reporting(E_WARNING);
 
 # Connect To Database
-mysql_connect('localhost', 'root', 'trunks')or die(mysql_error());
+mysql_connect('localhost', 'root', 'root')or die(mysql_error());
 mysql_select_db('test')or die(mysql_error());
 
 # Include Pagination Class
