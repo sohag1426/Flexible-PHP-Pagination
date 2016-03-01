@@ -7,7 +7,7 @@
     "license": "UNLICENSE",
     "autoload": {
         "classmap": ["pagination.php"]
-    }
+    },
     "authors": [
         {
             "name": "Blaxus",
