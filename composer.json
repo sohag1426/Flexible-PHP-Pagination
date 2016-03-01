@@ -6,10 +6,8 @@
     "homepage": "http://modularr.com",
     "license": "UNLICENSE",
     "autoload": {
-        "psr-0": {
-            "modularr": "src/"
-        }
-    },
+        "classmap": ["pagination.php"]
+    }
     "authors": [
         {
             "name": "Blaxus",
