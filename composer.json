@@ -7,11 +7,5 @@
     "license": "UNLICENSE",
     "autoload": {
         "classmap": ["pagination.php"]
-    },
-    "authors": [
-        {
-            "name": "Blaxus",
-            "email": "admin@daviddhont.com"
-        }
-    ]
+    }
 }
